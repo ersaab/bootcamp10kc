@@ -68,9 +68,6 @@ export class UserEnrollComponent implements OnInit {
             }
           });
           console.log(response.message);
-        },
-        (error: any) => {
-          console.log("error")
         }
       )
       this.btnSpin = false;
