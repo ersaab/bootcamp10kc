@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <div class="row profileHeadingDiv paddingT20Responsive">
+        <h1 style="font-family: myriad-light;" class="responsiveTitle">Profile Details </h1>
+    </div>
+    <div class=" row profilePasswordUpdateBox no-gutters ">
+        <div class="row headingDiv">
+            <div class="col-sm-2 col-xl-1 noDisplayResponsive">
+                <!-- <img src="../assets/pics/applicant/applicantContactInfromation.png" class="img-fluid float-left"
+                    style=" width: 60px; height: 80px; margin-top: 10px; "> -->
+            </div>
+            <div class="col-sm-10 col-xl-11" [formGroup]="updatePhoneForm">
+                <img src="../assets/pics/applicant/userDetails.png" class="detailsIcon ">
+
+                <div class="row">
+                    <h4 class="smLabelLight text-center text-sm-left" style="margin-top: 20px !important;">
+                        Personal Details
+                    </h4>
+                </div>
+                <div class="row padding30">
+                    <div class="col-sm-6 col-xl-4">
+                        <h4 class="headingValue"> {{updatePhoneForm.get('phoneNumber').value}} </h4>
+                        <h6 class="heading">First Name</h6>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <h4 class="headingValue"> {{updatePhoneForm.get('lastName').value}} </h4>
+                        <h6 class="heading">Last Name</h6>
+                    </div>
+                </div>
+                <div class="row padding30">
+                    <div class="col-sm-6">
+                        <!-- <h4 class="headingValue"> {{fc?.email.value}} </h4> -->
+                        <h6 class="heading">Email Address</h6>
+                    </div>
+
+                </div>
+                <div class="row padding30 no-gutters marginR">
+                    <div class="col-7 col-sm-8 col-xl-3">
+                        <span>
+                            <h6 class="heading">Phone Number </h6>
+                            <input type="text" class="form-control" style="width: 90% !important;"
+                                formControlName="phoneNumber" minlength=14 maxlength=14 appPhoneMask
+                                placeholder="(555) 555-5555" required>
+                        </span>
+                        <div style="height: 20px;">
+                            <!-- <div class="validationDiv" *ngIf=" fc.phoneNumber.invalid && ( fc.phoneNumber.touched)">
+                                <div *ngIf="fc.phoneNumber.errors.required">
+                                    Phone No. is required.
+                                </div>
+                                <div *ngIf="fc.phoneNumber.errors.minlength">
+                                    Must be 10 digit.
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- <div class="col-5 col-sm-4 col-xl-4" *ngIf="fc.phoneNumber.disabled">
+                        <a (click)="editMode()" title="Update" class="updateIconR">
+                            <img src="../assets/pics/editIcon.png" alt="editPic"
+                                style="height: 40px; cursor: pointer; opacity: 0.8; width: 40px; margin-top: 8px; ">
+
+                            <span class="ipadDisplay" style="color:green;" *ngIf="changedMessage">
+                                <i class="fas fa-check" style=" opacity: 1; "></i>
+                                {{changedMessage}}
+                            </span>
+                            <span class="ipadDisplay" style="color:red;" *ngIf="errorMessage">
+                                <i class="fas fa-times-circle" style=" opacity: 1; "></i>
+                                {{errorMessage}}
+                            </span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="col-5 col-sm-4" *ngIf="fc.phoneNumber.enabled">
+                        <a (click)="setPreviousPhone()" title="Revert Changes">
+                            <i class="fas fa-undo"
+                                style="height: 40px; font-size: 25px; cursor: pointer; width: 50px; margin-top: 15px; ">
+                            </i>
+                        </a>
+                        <a (click)="updateNumber()" [hidden]="fc.phoneNumber.value.length != 14" title="Update Changes">
+                            <i class="fas fa-save"
+                                style="height: 40px; font-size: 25px; cursor: pointer; width: 50px; margin-top: 15px; ">
+                            </i>
+                        </a>
+
+                    </div> -->
+                </div>
+                <div class="row padding30">
+                    <div class="col-sm-6 col-xl-4">
+                        <h4 class="headingValue"> {{applicantDob}} </h4>
+                        <h6 class="heading">Date Of Birth </h6>
+                    </div>
+                </div>
+                <!-- <div class="row padding30">
+                    <div class="col-sm-4">
+                        <h6 class="heading">Address </h6>
+                        <h4 class="headingValue"> 586, Reed street </h4>
+                        <h4 class="headingValue"> Manitoba, Ontario </h4>
+                        <h4 class="headingValue"> Canada, l4gbvg </h4>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+body{
+    font-family: Helvetica;
+    margin: 0;
+    background-color: #f2f2f2;
+    .row
+    {
+        margin: 0;
+    }
+}
+input, select{
+    border-radius: 18px !important;
+    min-height: 1em !important;
+    margin: 0 auto 1em auto !important;
+    &:active, &:focus
+    {
+        box-shadow: 2px 2px 4px rgb(79, 167, 255) !important;
+    } 
+}
+
+button, .btn{
+    border-radius: 25px !important;
+    min-height: 0.8em !important;
+    margin: 0 !important;
+    &:active, &:focus
+    {
+        box-shadow: 2px 2px 4px grey !important;
+    } 
+}
+input.ng-invalid.ng-touched
+{
+  border: 1px solid #ff4400c7 !important;
+}
+select.ng-invalid.ng-touched
+{
+  border: 1px solid #ff4400c7 !important;
+}

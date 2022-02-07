@@ -1,0 +1,47 @@
+<div class=" allContent" style=" background: url('../assets/bgImage.jpg')no-repeat center center;
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover; ">
+
+    <div class="contentBox" [formGroup]="loginForm">
+        <div class="row logoDiv">
+            <h2 class="titleClass ">
+                Bootcamp
+            </h2>
+        </div>
+        <div class="row text-center loginDiv">
+            <h4>
+                Login
+            </h4>
+        </div>
+        <div class="row formDiv ">
+            <label for="userName">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password">
+        </div>
+        <div class="row text-center ">
+            <div class="reCaptcha">
+                <ngx-recaptcha2 #captchaElem [siteKey]="captchaKey" (success)="handleSuccess($event)"
+                    [useGlobalDomain]="false" [size]="size" [hl]="lang" [theme]="theme" [type]="type"
+                    formControlName="recaptcha">
+                </ngx-recaptcha2>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" routerLink="/enroll" class="btn btn-sm regBtn ">
+                Register
+            </button>
+            &nbsp;
+            &nbsp;
+            <button type="submit" [disabled]="!loginForm.valid || spin" (click)="login(loginForm.value)"
+                class="btn btn-sm submitButton ">
+                Login
+                <span *ngIf="spin">
+                    <img src="../assets/pics/spinner.gif" width="25px" alt="">
+                </span>
+            </button>
+        </div>
+
+    </div>
+</div>

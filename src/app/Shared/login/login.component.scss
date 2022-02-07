@@ -1,0 +1,239 @@
+.allContent
+{
+    position: relative;
+    margin: 0% !important;
+    padding: 0% !important;
+    height: 100vh !important;
+    width: 100% !important;
+    /* background-color: dodgerblue; */
+}
+.allContent:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;    
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background-color: rgb(0, 0, 0, 0.9);
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: contain;
+}
+.row{
+    margin: 0;
+}
+.contentBox
+{
+    margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+    border: 1px #f5f5f5 solid;
+    box-shadow: 5px 5px 9px #00000026;
+    /* margin: 10% auto; */
+    height: 480px;
+    width: 500px;
+    max-height: max-content !important;
+    padding: 1%;
+    background-color: white;
+    overflow: hidden;
+}
+.logoDiv
+{
+    margin: 0% auto;
+}
+.titleClass
+{
+    color: #0078b8;
+    font-size: 6vh;
+    margin: 0.2em auto 0 auto ;
+}
+.imgClass
+{
+    padding: 0%;
+    margin: 0% auto !important;
+    width: 80px;
+}
+.reCaptcha
+  {
+      margin: 0 auto;
+  }
+.loginDiv
+{
+    margin-top: 20px !important;
+    padding: 0%;
+    color: #00000094;
+}
+label
+{
+    margin: 0% !important;
+    padding: 0% !important;
+    color: #00000094;
+}
+
+.formDiv
+{
+    padding: 1em;
+}
+.termslines
+{
+    color: #00000094;
+    font-size: 1.3vh;
+    a{
+        text-decoration: none;
+        color: #0078b8;
+    }
+}
+.forgotPassword
+{
+    margin: 0 auto;
+    color: #0078b8;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+    &:focus, &:active, &:hover{
+        color: #01517c;
+    }
+}
+.row
+{
+    margin: 0% !important;
+}
+.submitButton, .regBtn
+{
+    width: 100px;
+    background-color: #0078b8;
+    color: white;
+    height: 40px;
+    font-size: 18px !important;
+    font-weight: 500;
+    margin: 1em auto !important;
+}
+.regBtn{
+    color: rgb(0, 0, 0);
+    background-color: rgb(142, 240, 253);
+}
+.homepageClass
+{
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    color: #535353;
+    &:hover, &:active, &:focus{
+        color: #0078b8;
+    }
+}
+@media all and (max-width: 500px) and (min-width: 300px){
+.contentBox
+{
+    width: 90%;
+}
+.titleClass
+{
+    font-size: 8vw;
+}
+input{
+    height: 9vw !important;
+}
+  }
+
+  @media all and (max-width: 299px){
+    .contentBox
+    {
+        width: 90%;
+    }
+    .titleClass
+    {
+        font-size: 8vw;
+    }
+    input{
+        height: 9vw !important;
+    }
+      }
+
+
+  @media all and (max-width: 699px) and (min-width: 500px){
+    .contentBox
+    {
+        width: 80%;
+    }
+    .titleClass
+    {
+        font-size: 8vw;
+    }
+    input{
+        height: 6vw !important;
+    }
+      }
+  @media all and (max-width: 1149px) and (min-width: 700px){
+    .contentBox
+    {
+        width: 500px;
+    }
+    .titleClass
+{
+    font-size: 6vw;
+}
+input{
+    height: 4vw !important;
+}
+  }
+  @media all and (min-width: 1150px) and (max-width: 1200px){
+    .contentBox
+    {
+        width: 40%;
+    }
+    .titleClass
+    {
+        font-size: 8vh;
+    }
+    input{
+        height: 4vh !important;
+    }
+      }
+    @media all and (min-width: 1200px){
+    .contentBox
+    {
+    width: 32%;
+    height: 60%;
+    }
+    .titleClass
+    {
+    padding-top: 1vh;
+    font-size: 7vh;
+    }
+    input{
+    height: 4vh !important;
+    }
+    .imgClass
+    {
+    width: 15%;
+    }
+    label
+    {
+    font-size: 2.5vh;
+    }
+    h4{
+        margin: 0px auto;
+    font-size: 4vh;
+    }
+    .termslines
+    {
+    margin-top: 20px;
+    font-size: 2vh;
+    }
+    .submitButton , .regBtn
+    {
+    width: 12vh;
+    height: 5vh;
+    font-size: 2.5vh;
+    margin: 1em auto;
+    }
+
+        }
+
