@@ -3,11 +3,11 @@
         <h1 class="responsiveTitle  text-center "> Design & Developed by: <a href="http://www.erharmanjitsingh.com">
                 Harmanjit
                 SINGH</a></h1>
-        <button (click)="logout()" class="btn btn-sm btn-primary">
+        <button (click)="logout()" class="btn btn-sm logBtn">
             Logout
         </button>
     </div>
-    <div class=" row profilePasswordUpdateBox no-gutters ">
+    <div class=" row profileBox no-gutters ">
         <div class="row headingDiv">
             <div class="col-sm-2 col-xl-1 noDisplayResponsive">
             </div>
@@ -21,7 +21,23 @@
                 </div>
                 <div class="row padding30">
                     <div class="col-sm-6">
-                        <img src="../assets/bgImage.jpg" height="200px" width="180px" alt="">
+                        <div class="cardBox" *ngIf="imageUrl == ''">
+                            <label>
+                                <input type="file" accept="image/*" (change)="showPreview($event)"
+                                    style="display:none;">
+                                <img class="card-img-top" src="../assets/userDetails.png" alt="uploadImage"><br>
+                                <span class="btn-upload">Upload a Photo</span>
+                            </label>
+                        </div>
+                        <div class="cardBox" *ngIf="imageUrl && imageUrl !== ''">
+                            <img [src]="imageUrl" alt="Subject Property" class="card-img-topSubmit">
+                            <label class="submitSign">
+                                <input type="file" accept="image/*" (change)="showPreview($event)"
+                                    style="display:none;">
+                                <span>Change Photo</span>
+                            </label>
+                        </div>
+                        <!-- <img src="../assets/bgImage.jpg" height="200px" width="180px" alt=""> -->
                     </div>
                 </div>
                 <div class="row padding30">

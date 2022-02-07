@@ -1,1 +1,85 @@
-<p>user-enroll works!</p>
+<div class="container-fluid mainIcon">
+    <div class="row profileHeadingDiv paddingT20Responsive">
+        <h1 class="responsiveTitle  text-center "> Design & Developed by: <a href="http://www.erharmanjitsingh.com">
+                Harmanjit
+                SINGH</a></h1>
+        <button (click)="login()" class="btn btn-sm logBtn">
+            Login
+        </button>
+    </div>
+    <div class=" row profileBoxEnroll no-gutters ">
+        <div class="row headingDiv">
+            <div class="col-sm-2 col-xl-1 noDisplayResponsive">
+            </div>
+            <div class="col-sm-10 col-xl-11" [formGroup]="userAddForm">
+                <img src="../assets/backUsers.png" class="detailsIconEnroll ">
+
+                <div class="row">
+                    <h4 class="smLabelLight text-center text-sm-left" style="margin-top: 20px !important;">
+                        Personal Details
+                    </h4>
+                </div>
+                <div class="row imgRow padding16">
+                    <div class="col-sm-6">
+                        <div class="cardBox" *ngIf="imageUrl == ''">
+                            <label>
+                                <input type="file" accept="image/*" (change)="showPreview($event)"
+                                    style="display:none;">
+                                <img class="card-img-top" src="../assets/userDetails.png" alt="uploadImage"><br>
+                                <span class="btn-upload">Upload a Photo</span>
+                            </label>
+                        </div>
+                        <div class="cardBox" *ngIf="imageUrl && imageUrl !== ''">
+                            <img [src]="imageUrl" alt="Subject Property" class="card-img-topSubmit">
+                            <label class="submitSign">
+                                <input type="file" accept="image/*" (change)="showPreview($event)"
+                                    style="display:none;">
+                                <span>Change Photo</span>
+                            </label>
+                        </div>
+                        <!-- <img src="../assets/bgImage.jpg" height="200px" width="180px" alt=""> -->
+                    </div>
+                </div>
+                <div class="row padding16">
+                    <div class="col-sm-6 col-xl-4">
+                        <h6 class="heading">First Name</h6>
+                        <input type="text" class="form-control" formControlName="firstName">
+                    </div>
+                </div>
+                <div class="row padding16">
+                    <div class="col-sm-6 col-xl-4">
+                        <h6 class="heading">Last Name</h6>
+                        <input type="text" class="form-control" formControlName="lastName">
+                    </div>
+                </div>
+                <div class="row padding16">
+                    <div class="col-sm-6 col-xl-4">
+                        <h6 class="heading">Email Address</h6>
+                        <input type="text" class="form-control" formControlName="email">
+                    </div>
+                </div>
+                <div class="row padding16">
+                    <div class="col-sm-6 col-xl-4">
+                        <h6 class="heading">Phone Number</h6>
+                        <input type="text" class="form-control" formControlName="phoneNumber">
+                    </div>
+                </div>
+                <div class="row padding16">
+                    <div class="col-sm-6 col-xl-4">
+                        <h6 class="heading">Password</h6>
+                        <input type="text" class="form-control" formControlName="password">
+                    </div>
+                </div>
+
+                <div class="row padding16">
+                    <div class="col-sm-6 col-xl-4">
+                        <button class="btn btn-sm regBtn"> Register </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
