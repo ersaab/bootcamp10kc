@@ -35,14 +35,11 @@ export class UserDetailsComponent implements OnInit {
 
     //File Preview
     const reader = new FileReader();
+    const fileName = file.name;
     reader.onload = () => {
       this.imageUrl = reader.result as string;
       this.fc['imgBase64'].patchValue(this.imageUrl);
-      // this.postData(this.mortgageApplication, () => {
-      //   //this.router.navigate(['']);
-      //   //console.log("Img Url in Preview", this.imageUrlBack);
-      //   this.spinWheel = false;
-      // });
+      this.fc['imgName'].patchValue(fileName);
     }
     reader.readAsDataURL(file);
   }

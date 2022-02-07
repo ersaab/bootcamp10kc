@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { user } from '../Model/user.model';
 import { ToasterService } from './toaster.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class LogService {
   postUserApi = `${environment.apiKey}addUser`;
   getUsersApi = `${environment.apiKey}users`;
 
-  constructor(private ts: ToasterService, private http: HttpClient) { }
+  constructor(private ts: ToasterService, private http: HttpClient, private router: Router) { }
 
   updatedUsers() {
     return this.usersUpdated.asObservable();
@@ -26,10 +28,7 @@ export class LogService {
   }
 
   addUser(formData: any) {
-    return this.http.post<{ message: string }>(this.postUserApi, formData)
-      .subscribe((response: any) => {
-        console.log(response.message);
-      })
+    return this.http.post<{ message: string }>(this.postUserApi, formData);
   }
 
   getUsers() {

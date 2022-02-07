@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LogService } from '../Services/log.service';
 
 @Component({
@@ -48,16 +49,30 @@ export class UserEnrollComponent implements OnInit {
       imgBase64: ["", [Validators.required]],
       firstName: ["", [Validators.required]],
       lastName: ["", [Validators.required]],
-      email: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       phoneNumber: ["", [Validators.required, Validators.maxLength(10)]],
-      password: ["", [Validators.required, Validators.maxLength(8)]],
+      password: ["", [Validators.required, Validators.minLength(8)]],
     });
-  }
+  };
 
   submit() {
     this.btnSpin = true;
     if (this.userAddForm.valid) {
-      this.ls.addUser(this.userAddForm.value);
+      this.ls.addUser(this.userAddForm.value).subscribe(
+        (response: any) => {
+          Swal.fire("Added Successfully!", "A new user has been added successfully.", "success").then((result) => {
+            if (result.value) {
+              this.router.navigate(['']);
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+            }
+          });
+          console.log(response.message);
+        },
+        (error: any) => {
+          console.log("error")
+        }
+      )
       this.btnSpin = false;
 
     }
