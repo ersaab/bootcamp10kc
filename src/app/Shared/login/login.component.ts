@@ -43,41 +43,47 @@ export class LoginComponent implements OnInit {
     //  console.log("ReCaptcha", e);
   }
 
+  navigate() {
+    this.router.navigate(['/register']);
+  }
 
   login(formValue: any) {
     this.loginForm.get('loginDate').patchValue(new Date());
 
-    // if (this.loginForm.valid) {
-    //   this.spin = true;
-    //   this._ls.login(this.loginForm.value).subscribe(
-    //     (response: any) => {
-    //       this.spin = false;
-    //       this.details = response;
-    //       this.storage.setSessionItem('access', response.token);
-    //       // this.toast.showSuccess('Welcome to 10kc Bootcamp', '');
-    //       // this.router.navigate(['backOffice']);
-    //       this.redirect();
-    //     },
-    //     (error: any) => {
-    //       this.spin = false;
-    //       this.errorMessage = "";
-    //       switch (error.status) {
-    //         case 400:
-    //           this.errorMessage = "Email/Password incorrect!";
-    //           break;
-    //         case 401:
-    //           this.errorMessage = "Unauthorized user!";
-    //           break;
-    //         case 404:
-    //           this.errorMessage = "Url not found.";
-    //           break;
-    //         case 500:
-    //           this.errorMessage = "Email/Password incomplete!";
-    //           break;
-    //       }
-    //     }
-    //   )
-    // }
+    if (this.loginForm.valid) {
+
+      this.router.navigate(['details']);
+
+      //   this.spin = true;
+      //   this._ls.login(this.loginForm.value).subscribe(
+      //     (response: any) => {
+      //       this.spin = false;
+      //       this.details = response;
+      //       this.storage.setSessionItem('access', response.token);
+      //       // this.toast.showSuccess('Welcome to 10kc Bootcamp', '');
+      //       // this.router.navigate(['backOffice']);
+      //       this.redirect();
+      //     },
+      //     (error: any) => {
+      //       this.spin = false;
+      //       this.errorMessage = "";
+      //       switch (error.status) {
+      //         case 400:
+      //           this.errorMessage = "Email/Password incorrect!";
+      //           break;
+      //         case 401:
+      //           this.errorMessage = "Unauthorized user!";
+      //           break;
+      //         case 404:
+      //           this.errorMessage = "Url not found.";
+      //           break;
+      //         case 500:
+      //           this.errorMessage = "Email/Password incomplete!";
+      //           break;
+      //       }
+      //     }
+      //   )
+    }
   }
 
   initLoginForm() {

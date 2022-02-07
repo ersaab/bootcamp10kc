@@ -8,11 +8,13 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { SharedModule } from './Shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { UserEnrollComponent } from './user-enroll/user-enroll.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserDetailsComponent,
+    UserEnrollComponent,
   ],
   imports: [
     BrowserModule,
