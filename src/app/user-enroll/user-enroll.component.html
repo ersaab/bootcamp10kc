@@ -41,42 +41,49 @@
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">First Name</h6>
+                        <h6 class="heading">First Name <sup>*</sup> </h6>
                         <input type="text" class="form-control" formControlName="firstName">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Last Name</h6>
+                        <h6 class="heading">Last Name <sup>*</sup></h6>
                         <input type="text" class="form-control" formControlName="lastName">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Email Address</h6>
+                        <h6 class="heading">Email Address <sup>*</sup></h6>
                         <input type="text" class="form-control" formControlName="email">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Phone Number</h6>
+                        <h6 class="heading">Phone Number <sup>*</sup></h6>
                         <input type="text" class="form-control" formControlName="phoneNumber">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Password</h6>
-                        <input type="text" class="form-control" formControlName="password">
+                        <h6 class="heading">Password <sup>*</sup> <small style="float: right;">(8 Minimum Characters
+                                required)</small> </h6>
+                        <input type="password" class="form-control" formControlName="password">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading text-danger ">All fields are required.</h6>
+                        <h6 class="heading text-danger ">All (*) marked fields are required.</h6>
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <button class="btn btn-sm regBtn"> Register </button>
+                        <button class="btn btn-sm regBtn" [disabled]="!userAddForm.valid || btnSpin" (click)="submit()"
+                            type="submit">
+                            Register
+                            <span *ngIf="btnSpin">
+                                <img src="../assets/pics/spinner.gif" width="25px" alt="">
+                            </span>
+                        </button>
                     </div>
                 </div>
 

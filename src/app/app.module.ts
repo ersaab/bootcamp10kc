@@ -9,6 +9,7 @@ import { SharedModule } from './Shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { UserEnrollComponent } from './user-enroll/user-enroll.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserEnrollComponent } from './user-enroll/user-enroll.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    HttpClientModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

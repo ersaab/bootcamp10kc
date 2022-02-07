@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LogService } from '../Services/log.service';
 
 @Component({
   selector: 'app-user-enroll',
@@ -11,13 +12,15 @@ export class UserEnrollComponent implements OnInit {
 
   userAddForm: FormGroup;
   imageUrl: any = '';
+  btnSpin: boolean = false;
 
   get fc() {
     return this.userAddForm.controls
   }
 
   constructor(public fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private ls: LogService
   ) {
   }
 
@@ -30,14 +33,11 @@ export class UserEnrollComponent implements OnInit {
 
     //File Preview
     const reader = new FileReader();
+    const fileName = file.name;
     reader.onload = () => {
       this.imageUrl = reader.result as string;
       this.fc['imgBase64'].patchValue(this.imageUrl);
-      // this.postData(this.mortgageApplication, () => {
-      //   //this.router.navigate(['']);
-      //   //console.log("Img Url in Preview", this.imageUrlBack);
-      //   this.spinWheel = false;
-      // });
+      this.fc['imgName'].patchValue(fileName);
     }
     reader.readAsDataURL(file);
   }
@@ -49,10 +49,25 @@ export class UserEnrollComponent implements OnInit {
       firstName: ["", [Validators.required]],
       lastName: ["", [Validators.required]],
       email: ["", [Validators.required]],
-      phoneNumber: ["", [Validators.required, Validators.maxLength(14)]],
-      password: ["", [Validators.required, Validators.maxLength(14)]],
+      phoneNumber: ["", [Validators.required, Validators.maxLength(10)]],
+      password: ["", [Validators.required, Validators.maxLength(8)]],
     });
   }
+
+  submit() {
+    this.btnSpin = true;
+    if (this.userAddForm.valid) {
+      this.ls.addUser(this.userAddForm.value);
+      this.btnSpin = false;
+
+    }
+    else {
+      this.ls.addUser(this.userAddForm.value);
+      this.btnSpin = false;
+
+    }
+  }
+
 
 
   ngOnInit(): void {

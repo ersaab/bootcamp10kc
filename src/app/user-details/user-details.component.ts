@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { user } from '../Model/user.model';
+import { LogService } from '../Services/log.service';
 
 @Component({
   selector: 'app-user-details',
@@ -9,16 +12,17 @@ import { Router } from '@angular/router';
 })
 export class UserDetailsComponent implements OnInit {
 
+  users: user[] = [];
   userDetailsForm: FormGroup;
   imageUrl: any = '';
-
 
   get fc() {
     return this.userDetailsForm.controls
   }
 
   constructor(public fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private ls: LogService,
   ) {
   }
 
@@ -54,8 +58,25 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  submit() {
+    if (this.userDetailsForm.valid) {
+      this.ls.addUser(this.userDetailsForm.value);
+    }
+    else {
+      this.ls.addUser(this.userDetailsForm.value);
+    }
+  }
+
 
   ngOnInit(): void {
     this.initForm();
+    this.ls.getUsers();
+    this.ls.updatedUsers().subscribe(
+      (users: user[]) => {
+        this.users = users;
+      }
+    )
+
   }
+
 }
