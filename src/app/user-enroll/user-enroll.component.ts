@@ -60,6 +60,7 @@ export class UserEnrollComponent implements OnInit {
     if (this.userAddForm.valid) {
       this.ls.addUser(this.userAddForm.value).subscribe(
         (response: any) => {
+          this.btnSpin = false;
           Swal.fire("Added Successfully!", "A new user has been added successfully.", "success").then((result) => {
             if (result.value) {
               this.router.navigate(['']);
@@ -70,11 +71,10 @@ export class UserEnrollComponent implements OnInit {
           console.log(response.message);
         }
       )
-      this.btnSpin = false;
 
     }
     else {
-      this.ls.addUser(this.userAddForm.value);
+      // this.ls.addUser(this.userAddForm.value);
       this.btnSpin = false;
 
     }

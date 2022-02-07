@@ -53,26 +53,28 @@
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Email Address <sup>*</sup></h6>
+                        <h6 class="heading">Email Address <sup>*</sup> <small
+                                style="float: right;">example@company.com</small></h6>
                         <input type="text" class="form-control" formControlName="email">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Phone Number <sup>*</sup></h6>
+                        <h6 class="heading">Phone Number <sup>*</sup> <small style="float: right;">(Only Numbers 0-9
+                                [Max - 10])</small> </h6>
                         <input type="text" class="form-control" max="10" min="10" formControlName="phoneNumber">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading">Password <sup>*</sup> <small style="float: right;">(8 minimum characters
-                                required.)</small> </h6>
+                        <h6 class="heading">Password <sup>*</sup> <small style="float: right;">(Minimum 8 characters
+                                required)</small> </h6>
                         <input type="password" class="form-control" formControlName="password">
                     </div>
                 </div>
                 <div class="row padding16">
                     <div class="col-sm-6 col-xl-4">
-                        <h6 class="heading text-danger ">All (*) marked fields are required.</h6>
+                        <h6 class="heading text-danger ">All (*) marked fields and Picture are required.</h6>
                     </div>
                 </div>
                 <div class="row padding16">
@@ -81,7 +83,7 @@
                             type="submit">
                             Register
                             <span *ngIf="btnSpin">
-                                <img src="../assets/pics/spinner.gif" width="25px" alt="">
+                                <img src="../assets/spinner.gif" width="25px" alt="">
                             </span>
                         </button>
                     </div>
