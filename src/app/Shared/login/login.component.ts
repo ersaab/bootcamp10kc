@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/auth.service';
 import { LoggedInUserService } from 'src/app/Services/logged-in-user.service';
 import { StorageService } from 'src/app/Services/storage.service';
 import { ToasterService } from 'src/app/Services/toaster.service';
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private _ls: LoggedInUserService,
+    private auth: AuthService,
     private cookie: CookieService,
     private storage: StorageService,
     private toast: ToasterService
@@ -47,14 +48,18 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  login(formValue: any) {
-    this.loginForm.get('loginDate').patchValue(new Date());
+  login() {
 
     if (this.loginForm.valid) {
+      this.spin = true;
+
+      const email = this.loginForm.get('email').value;
+      const password = this.loginForm.get('password').value;
+
+      this.auth.login(email, password, true);
 
       this.router.navigate(['details']);
 
-      //   this.spin = true;
       //   this._ls.login(this.loginForm.value).subscribe(
       //     (response: any) => {
       //       this.spin = false;
@@ -92,11 +97,9 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       password: ["", [Validators.required, Validators.minLength(8)]],
-      loginDate: ["", [Validators.required]],
       recaptcha: [null, [Validators.required]],
 
     });
-    this.loginForm.get('loginDate').patchValue(new Date());
   }
 
   redirect() {

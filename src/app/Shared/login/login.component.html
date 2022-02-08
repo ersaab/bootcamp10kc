@@ -16,7 +16,7 @@
         </div>
         <div class="row formDiv ">
             <label for="userName">Email</label>
-            <input type="text" class="form-control" formControlName="email">
+            <input type="email" class="form-control" formControlName="email">
             <label for="password">Password</label>
             <input type="password" class="form-control" formControlName="password">
         </div>
@@ -34,11 +34,11 @@
             </button>
             &nbsp;
             &nbsp;
-            <button type="submit" [disabled]="!loginForm.valid || spin" (click)="login(loginForm.value)"
+            <button type="submit" [disabled]="!loginForm.valid || spin" (click)="login()"
                 class="btn btn-sm submitButton ">
                 Login
                 <span *ngIf="spin">
-                    <img src="../assets/pics/spinner.gif" width="25px" alt="">
+                    <img src="../assets/spinner.gif" width="25px" alt="">
                 </span>
             </button>
         </div>

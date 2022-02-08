@@ -38,16 +38,16 @@ export class UserDetailsComponent implements OnInit {
     const fileName = file.name;
     reader.onload = () => {
       this.imageUrl = reader.result as string;
-      this.fc['imgBase64'].patchValue(this.imageUrl);
-      this.fc['imgName'].patchValue(fileName);
+      this.fc['imageBase64'].patchValue(this.imageUrl);
+      this.fc['imageName'].patchValue(fileName);
     }
     reader.readAsDataURL(file);
   }
 
   initForm() {
     this.userDetailsForm = this.fb.group({
-      imgName: ["", [Validators.required]],
-      imgBase64: ["", [Validators.required]],
+      imageName: ["", [Validators.required]],
+      imageBase64: ["", [Validators.required]],
       firstName: ["", [Validators.required]],
       lastName: ["", [Validators.required]],
       email: ["", [Validators.required]],
@@ -71,6 +71,7 @@ export class UserDetailsComponent implements OnInit {
     this.ls.updatedUsers().subscribe(
       (users: user[]) => {
         this.users = users;
+        this.imageUrl = this.users[0].imageBase64;
       }
     )
 

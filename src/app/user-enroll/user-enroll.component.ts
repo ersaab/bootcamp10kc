@@ -37,16 +37,16 @@ export class UserEnrollComponent implements OnInit {
     const fileName = file.name;
     reader.onload = () => {
       this.imageUrl = reader.result as string;
-      this.fc['imgBase64'].patchValue(this.imageUrl);
-      this.fc['imgName'].patchValue(fileName);
+      this.fc['imageBase64'].patchValue(this.imageUrl);
+      this.fc['imageName'].patchValue(fileName);
     }
     reader.readAsDataURL(file);
   }
 
   initForm() {
     this.userAddForm = this.fb.group({
-      imgName: ["", [Validators.required]],
-      imgBase64: ["", [Validators.required]],
+      imageName: ["", [Validators.required]],
+      imageBase64: ["", [Validators.required]],
       firstName: ["", [Validators.required]],
       lastName: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
@@ -69,12 +69,27 @@ export class UserEnrollComponent implements OnInit {
             }
           });
           console.log(response.message);
+        },
+        (error: any) => {
+          Swal.fire("User Exist", "A user with same email id exist in system.", "warning").then((result) => {
+            if (result.value) {
+              this.router.navigate(['']);
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+            }
+          });
         }
       )
-
     }
     else {
       // this.ls.addUser(this.userAddForm.value);
+      Swal.fire("Form Invalid", "Fields cannot be empty or invalid.", "warning").then((result) => {
+        if (result.value) {
+          this.router.navigate(['register']);
+        }
+        else if (result.dismiss === Swal.DismissReason.cancel) {
+        }
+      });
       this.btnSpin = false;
 
     }

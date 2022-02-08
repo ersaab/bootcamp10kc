@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { map, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { user } from '../Model/user.model';
 import { ToasterService } from './toaster.service';
@@ -28,15 +28,30 @@ export class LogService {
   }
 
   addUser(formData: any) {
-    return this.http.post<{ message: string }>(this.postUserApi, formData);
+    return this.http.post(this.postUserApi, formData);
   }
 
   getUsers() {
     this.http.get<{ message: string, users: user }>(this.getUsersApi)
-      .subscribe(
+      .pipe(map(
         (response: any) => {
-          this.users = response.users;
-          console.log("User List is ", response);
+          return response.users.map((user: any) => {
+            return {
+              id: user._id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              imageName: user.imageName,
+              imageBase64: user.imageBase64,
+            }
+          })
+        }
+      ))
+      .subscribe(
+        (mappedUsers: any) => {
+          this.users = mappedUsers;
+          console.log("User List is ", mappedUsers);
           this.usersUpdated.next([...this.users]);
         }
       )

@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   captchaKey: "6LfBCJAdAAAAAIIJ-aBPIRKUti5y03tkCGK5Is2Y",
-  apiKey: `http://localhost:3000/api/`
+  apiKey: `http://localhost:3000/api/`,
+  mongoDbPassword: 'VjuL5IvfCvhFD7gM'
+
 };
 
 /*
