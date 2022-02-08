@@ -14,6 +14,11 @@
                 Login
             </h4>
         </div>
+        <div *ngIf="errorMessage !== '' " class="row alert-danger" style="padding:0px;">
+            <h6 class="text-danger " style="margin: 4px auto; line-height: 1;">
+                {{errorMessage}}
+            </h6>
+        </div>
         <div class="row formDiv ">
             <label for="userName">Email</label>
             <input type="email" class="form-control" formControlName="email">

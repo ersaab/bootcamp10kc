@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { user } from '../Model/user.model';
 import { ToasterService } from './toaster.service';
@@ -16,6 +16,7 @@ export class LogService {
   private usersUpdated = new Subject<user[]>();
   postUserApi = `${environment.apiKey}addUser`;
   getUsersApi = `${environment.apiKey}users`;
+  getUserByIdApi = `${environment.apiKey}user/`;
 
   constructor(private ts: ToasterService, private http: HttpClient, private router: Router) { }
 
@@ -55,6 +56,12 @@ export class LogService {
           this.usersUpdated.next([...this.users]);
         }
       )
+  }
+
+  getUserById(id: string): Observable<any[]> {
+    return this.http.get<any>(this.getUserByIdApi + id).pipe(map((response) => {
+      return response as any;
+    }));
   }
 
 

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/auth.service';
-import { LoggedInUserService } from 'src/app/Services/logged-in-user.service';
 import { StorageService } from 'src/app/Services/storage.service';
 import { ToasterService } from 'src/app/Services/toaster.service';
 import { environment } from 'src/environments/environment';
@@ -48,17 +47,42 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  login() {
+  signedIn(id: string) {
+    this.router.navigate([id + '/details']);
+  }
 
+  login() {
     if (this.loginForm.valid) {
       this.spin = true;
 
-      const email = this.loginForm.get('email').value;
-      const password = this.loginForm.get('password').value;
+      this.auth.login(this.loginForm.get('email').value, this.loginForm.get('password').value, true).subscribe(
+        (response: any) => {
+          this.spin = false;
+          console.log("login Done", response)
+          this.cookie.set("access", response.token);
+          this.signedIn(response.userId);
+        },
+        (error: any) => {
+          this.spin = false;
+          this.errorMessage = "";
+          switch (error.status) {
+            case 400:
+              this.errorMessage = "Email/Password incorrect!";
+              break;
+            case 401:
+              this.errorMessage = "Unauthorized user!";
+              break;
+            case 404:
+              this.errorMessage = "Url not found.";
+              break;
+            case 500:
+              this.errorMessage = "Email/Password incomplete!";
+              break;
+          }
+        }
+      )
 
-      this.auth.login(email, password, true);
-
-      this.router.navigate(['details']);
+      // this.router.navigate(['details']);
 
       //   this._ls.login(this.loginForm.value).subscribe(
       //     (response: any) => {

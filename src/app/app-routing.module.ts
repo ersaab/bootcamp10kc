@@ -16,8 +16,13 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
   },
 
+  // {
+  //   path: 'details',
+  //   component: UserDetailsComponent,
+  //   // canActivate: [Auth],
+  // },
   {
-    path: 'details',
+    path: ':id/details',
     component: UserDetailsComponent,
     // canActivate: [Auth],
   },

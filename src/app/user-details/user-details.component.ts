@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { user } from '../Model/user.model';
 import { LogService } from '../Services/log.service';
 
@@ -12,7 +12,9 @@ import { LogService } from '../Services/log.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  users: user[] = [];
+  // users: user[] = [];
+  user: any;
+  loggedInUser: any;
   userDetailsForm: FormGroup;
   imageUrl: any = '';
 
@@ -23,6 +25,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(public fb: FormBuilder,
     private router: Router,
     private ls: LogService,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -57,23 +60,33 @@ export class UserDetailsComponent implements OnInit {
 
   submit() {
     if (this.userDetailsForm.valid) {
-      this.ls.addUser(this.userDetailsForm.value);
+      //  this.ls.addUser(this.userDetailsForm.value);
     }
     else {
-      this.ls.addUser(this.userDetailsForm.value);
+      //  this.ls.addUser(this.userDetailsForm.value);
     }
   }
 
+  getUserDetails(id: string) {
+    this.ls.getUserById(id).subscribe(
+      (response: any) => {
+        {
+          this.user = response.users;
+          this.imageUrl = response.users.imageBase64;
+        }
+      },
+      (error: any) => {
+        console.log("Error ", error);
+      }
+    )
+  }
 
   ngOnInit(): void {
     this.initForm();
-    this.ls.getUsers();
-    this.ls.updatedUsers().subscribe(
-      (users: user[]) => {
-        this.users = users;
-        this.imageUrl = this.users[0].imageBase64;
-      }
-    )
+    this.route.paramMap.subscribe(params => {
+      this.loggedInUser = params.get('id');
+      this.getUserDetails(this.loggedInUser);
+    });
 
   }
 
